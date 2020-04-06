@@ -11,10 +11,10 @@ const cors = require('./cors');
 router.options('*', cors.corsWithOptions, (req, res) => { res.sendStatus(200); });
 router.get('/', cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, function(req, res, next) {
   User.find({})
-    .then((dishes) => {
+    .then((users) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json(dishes);
+      res.json(users);
     }, (err) => next(err))
     .catch((err) => next(err));
 });
